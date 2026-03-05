@@ -20,7 +20,8 @@ Génère les 4 versions SAMR de cette activité. Réponds UNIQUEMENT en JSON val
   "R": "Description concrète de la version Redéfinition (2-3 phrases, tâche inédite impossible sans tech)"
 }
 
-Sois concret, pratique, adapté à l'enseignement secondaire ou professionnel. Utilise des outils numériques réels et actuels.`;
+Sois concret, pratique, adapté à l'enseignement secondaire ou professionnel.
+Privilégie ces outils quand c'est pertinent (tu peux aussi en utiliser d'autres) : Microsoft 365 (Word, Teams, Forms, OneNote, PowerPoint…), Canva, Wooclap, Wooflash, BookWidgets.`;
 
   const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
