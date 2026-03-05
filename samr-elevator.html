@@ -803,6 +803,84 @@ body {
   display: none;
 }
 
+/* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+
+/* Tablette (≤ 768px) */
+@media (max-width: 768px) {
+  body { padding: 16px 12px; }
+
+  .page-frame {
+    padding: 32px 20px 36px;
+    border-radius: 28px 6px 28px 6px;
+    box-shadow: 4px 4px 0 rgba(228,99,46,.2);
+  }
+
+  .corner-ornament { width: 44px; height: 44px; }
+
+  .retro-separator { margin: 16px 0; }
+
+  .intro-block { padding: 1.2rem 1.2rem; }
+  .intro-parts { grid-template-columns: 1fr; gap: .75rem; }
+
+  .tabs { gap: 8px; margin-top: 1rem; }
+  .tab-btn { padding: .6rem .8rem; font-size: .75rem; letter-spacing: .06em; }
+
+  /* Ascenseur : empilé verticalement */
+  .elevator-section {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 1rem 0 2rem;
+  }
+
+  .building { order: 2; }
+  .floor-content { order: 1; }
+  .shaft-viewport { height: 72px; }
+
+  /* Transformer */
+  .transformer-section { padding: 1rem 0 2rem; }
+  .generate-btn .btn-label { font-size: .85rem; padding: .8rem 1rem; }
+  .generate-btn .btn-icon  { width: 50px; }
+}
+
+/* Mobile (≤ 480px) */
+@media (max-width: 480px) {
+  body { padding: 10px 8px; }
+
+  .page-frame {
+    padding: 24px 14px 28px;
+    border-radius: 20px 4px 20px 4px;
+    border-width: 3px;
+  }
+
+  .app-header h1 { letter-spacing: .08em; }
+  .corner-ornament { display: none; }
+
+  .intro-block { padding: 1rem; border-radius: 10px 3px 10px 3px; }
+  .intro-lead  { font-size: .92rem; }
+  .intro-body  { font-size: .84rem; }
+  .intro-part-icon { font-size: 1.1rem; }
+  .intro-part strong { font-size: .73rem; }
+  .intro-part span   { font-size: .78rem; }
+
+  .tabs { flex-direction: column; gap: 6px; }
+  .tab-btn { text-align: center; }
+
+  .floor-card-inner { padding: 1.2rem; }
+  .card-title { font-size: 1.8rem; }
+
+  .result-floor-header { padding: .75rem 1rem; }
+  .result-body { padding: .75rem 1rem; font-size: .88rem; }
+
+  .input-zone { padding: 1rem; }
+  .examples-chips { gap: .35rem; }
+
+  .generate-btn { border-width: 2px; }
+  .generate-btn .btn-label { font-size: .8rem; padding: .75rem .8rem; }
+  .generate-btn .btn-icon  { width: 44px; font-size: 1rem; }
+}
+
 /* ───── FOOTER ───── */
 footer {
   text-align: center;
