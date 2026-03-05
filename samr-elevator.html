@@ -127,6 +127,7 @@ body {
 .tabs {
   display: flex;
   gap: 12px;
+  margin-top: 1.5rem;
   margin-bottom: 12px;
   width: min(900px, 96vw);
 }
@@ -853,11 +854,6 @@ footer {
     <span class="retro-separator-icon">❧ Navigation ❧</span>
   </div>
 
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="explorer">Explorer le modèle</button>
-    <button class="tab-btn" data-tab="transformer">Transformer une activité</button>
-  </nav>
-
   <!-- ══════════ INTRODUCTION ══════════ -->
   <div class="intro-block">
     <p class="intro-lead">
@@ -883,6 +879,11 @@ footer {
       </div>
     </div>
   </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="explorer">Explorer le modèle</button>
+    <button class="tab-btn" data-tab="transformer">Transformer une activité</button>
+  </nav>
 
   <!-- ══════════ PARTIE 1 ══════════ -->
   <div class="panel active" id="panel-explorer">
