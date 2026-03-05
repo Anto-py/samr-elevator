@@ -32,23 +32,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--retro-paper);
+  background: var(--retro-ink) url('background.jpg') center center / cover fixed;
   color: var(--retro-ink);
   font-family: 'Inter', -apple-system, sans-serif;
   min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 24px;
 }
 
 /* ───── PAGE FRAME ───── */
 .page-frame {
   background: var(--retro-paper);
   border: 4px solid var(--retro-orange);
-  min-height: calc(100vh - 24px);
-  margin: 12px;
-  padding: 48px 40px 40px;
+  border-radius: 48px 10px 48px 10px;
+  width: 100%;
+  max-width: 1020px;
+  padding: 48px 40px 48px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 8px 8px 0 rgba(228,99,46,.25);
 }
 
 /* Ornements de coins */
