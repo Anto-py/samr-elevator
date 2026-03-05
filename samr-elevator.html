@@ -155,6 +155,64 @@ body {
   color: var(--retro-teal);
 }
 
+/* ───── INTRODUCTION ───── */
+.intro-block {
+  width: min(900px, 96vw);
+  margin: 1.5rem 0 .5rem;
+  padding: 1.8rem 2rem;
+  background: rgba(18,118,118,.06);
+  border: 1px solid rgba(18,118,118,.2);
+  border-radius: 16px 4px 16px 4px;
+}
+.intro-lead {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(13,22,23,.85);
+  margin-bottom: 1rem;
+}
+.intro-lead strong { color: var(--retro-teal); }
+.intro-body {
+  font-size: .9rem;
+  line-height: 1.75;
+  color: rgba(13,22,23,.6);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(18,118,118,.15);
+}
+.intro-parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.intro-part {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+}
+.intro-part-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.intro-part div {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.intro-part strong {
+  font-family: 'Oswald', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--retro-teal);
+}
+.intro-part span {
+  font-size: .83rem;
+  line-height: 1.6;
+  color: rgba(13,22,23,.6);
+}
+
 /* ───── PANELS ───── */
 .panel { display: none; }
 .panel.active { display: block; }
@@ -799,6 +857,32 @@ footer {
     <button class="tab-btn active" data-tab="explorer">Explorer le modèle</button>
     <button class="tab-btn" data-tab="transformer">Transformer une activité</button>
   </nav>
+
+  <!-- ══════════ INTRODUCTION ══════════ -->
+  <div class="intro-block">
+    <p class="intro-lead">
+      Le modèle <strong>SAMR</strong>, développé par Ruben Puentedura, offre un cadre pour penser l'intégration du numérique dans l'enseignement — non pas comme une simple modernisation des outils, mais comme une opportunité de <strong>transformer en profondeur les apprentissages</strong>.
+    </p>
+    <p class="intro-body">
+      Il distingue quatre niveaux, de la substitution (même tâche, outil différent) jusqu'à la redéfinition (tâches inédites, impossibles sans le numérique). Plus on monte, plus la technologie devient un levier réel de changement pédagogique.
+    </p>
+    <div class="intro-parts">
+      <div class="intro-part">
+        <div class="intro-part-icon">🏢</div>
+        <div>
+          <strong>Explorer le modèle</strong>
+          <span>Naviguez entre les 4 niveaux SAMR pour comprendre leurs définitions, exemples et enjeux pédagogiques.</span>
+        </div>
+      </div>
+      <div class="intro-part">
+        <div class="intro-part-icon">⚗️</div>
+        <div>
+          <strong>Transformer une activité</strong>
+          <span>Décrivez une activité existante : l'IA génère instantanément ses 4 déclinaisons SAMR, outillées et prêtes à l'emploi.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════ PARTIE 1 ══════════ -->
   <div class="panel active" id="panel-explorer">
