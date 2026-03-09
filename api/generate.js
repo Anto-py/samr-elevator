@@ -3,12 +3,30 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { activity } = req.body;
+  const { activity, lang } = req.body;
   if (!activity || typeof activity !== 'string' || activity.trim().length === 0) {
     return res.status(400).json({ error: 'Missing activity' });
   }
 
-  const prompt = `Tu es un expert en pédagogie numérique et en modèle SAMR (Puentedura).
+  const isEn = lang === 'en';
+
+  const prompt = isEn
+    ? `You are an expert in digital pedagogy and the SAMR model (Puentedura).
+
+Starting activity: "${activity.trim()}"
+
+Generate the 4 SAMR versions of this activity. Reply ONLY with valid JSON, no text before or after, no backticks. Exact format:
+{
+  "S": "Concrete description of the Substitution version (2-3 sentences, with specific tool named)",
+  "A": "Concrete description of the Augmentation version (2-3 sentences, with specific features)",
+  "M": "Concrete description of the Modification version (2-3 sentences, with tool and significant task change)",
+  "R": "Concrete description of the Redefinition version (2-3 sentences, new task impossible without technology)"
+}
+
+Be concrete, practical, adapted to secondary or vocational education.
+Favour these tools when relevant (you can also use others): Microsoft 365 (Word, Teams, Forms, OneNote, PowerPoint…), Canva, Wooclap, Wooflash, BookWidgets.
+Add a light touch of pedagogical enthusiasm in the tone — not excessive, just enough to make it worth trying.`
+    : `Tu es un expert en pédagogie numérique et en modèle SAMR (Puentedura).
 
 Activité de départ : "${activity.trim()}"
 

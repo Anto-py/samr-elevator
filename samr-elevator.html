@@ -69,6 +69,39 @@ body {
 .corner-ornament.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
 .corner-ornament.br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
 
+/* ───── LANG SWITCHER ───── */
+.lang-switcher {
+  position: absolute;
+  top: 16px;
+  right: 84px;
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+}
+.lang-btn {
+  font-family: 'Oswald', sans-serif;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .28rem .65rem;
+  border: 1px solid var(--border-dim);
+  border-radius: 50px;
+  background: transparent;
+  color: rgba(13,22,23,.4);
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-btn.active {
+  background: var(--retro-teal);
+  border-color: var(--retro-teal);
+  color: var(--retro-paper);
+}
+.lang-btn:not(.active):hover {
+  border-color: var(--retro-teal);
+  color: var(--retro-teal);
+}
+
 /* ───── HEADER ───── */
 .app-header {
   width: 100%;
@@ -818,6 +851,7 @@ body {
   }
 
   .corner-ornament { width: 44px; height: 44px; }
+  .lang-switcher { right: 60px; }
 
   .retro-separator { margin: 16px 0; }
 
@@ -856,6 +890,7 @@ body {
 
   .app-header h1 { letter-spacing: .08em; }
   .corner-ornament { display: none; }
+  .lang-switcher { top: 12px; right: 14px; }
 
   .intro-block { padding: 1rem; border-radius: 10px 3px 10px 3px; }
   .intro-lead  { font-size: .92rem; }
@@ -922,45 +957,51 @@ footer {
     <path d="M15,15 Q20,10 25,18" fill="none" stroke="#127676" stroke-width="1"/>
   </svg>
 
+  <!-- Sélecteur de langue -->
+  <div class="lang-switcher" role="group" aria-label="Language">
+    <button class="lang-btn active" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+
   <!-- Header -->
   <header class="app-header">
     <h1>SAMR <span>Elevator</span></h1>
-    <p>Le modèle de Ruben Puentedura &middot; Intégration des technologies en éducation</p>
+    <p data-i18n="header.subtitle">Le modèle de Ruben Puentedura &middot; Intégration des technologies en éducation</p>
   </header>
 
   <div class="retro-separator">
-    <span class="retro-separator-icon">❧ Navigation ❧</span>
+    <span class="retro-separator-icon" data-i18n="nav.separator">❧ Navigation ❧</span>
   </div>
 
   <!-- ══════════ INTRODUCTION ══════════ -->
   <div class="intro-block">
-    <p class="intro-lead">
+    <p class="intro-lead" data-i18n-html="intro.lead">
       Le modèle <strong>SAMR</strong>, développé par Ruben Puentedura, offre un cadre pour penser l'intégration du numérique dans l'enseignement — non pas comme une simple modernisation des outils, mais comme une opportunité de <strong>transformer en profondeur les apprentissages</strong>.
     </p>
-    <p class="intro-body">
+    <p class="intro-body" data-i18n="intro.body">
       Il distingue quatre niveaux, de la substitution (même tâche, outil différent) jusqu'à la redéfinition (tâches inédites, impossibles sans le numérique). Plus on monte, plus la technologie devient un levier réel de changement pédagogique.
     </p>
     <div class="intro-parts">
       <div class="intro-part">
         <div class="intro-part-icon">🏢</div>
         <div>
-          <strong>Explorer le modèle</strong>
-          <span>Naviguez entre les 4 niveaux SAMR pour comprendre leurs définitions, exemples et enjeux pédagogiques.</span>
+          <strong data-i18n="intro.part1.title">Explorer le modèle</strong>
+          <span data-i18n="intro.part1.desc">Naviguez entre les 4 niveaux SAMR pour comprendre leurs définitions, exemples et enjeux pédagogiques.</span>
         </div>
       </div>
       <div class="intro-part">
         <div class="intro-part-icon">⚗️</div>
         <div>
-          <strong>Transformer une activité</strong>
-          <span>Décrivez une activité existante : l'IA génère instantanément ses 4 déclinaisons SAMR, outillées et prêtes à l'emploi.</span>
+          <strong data-i18n="intro.part2.title">Transformer une activité</strong>
+          <span data-i18n="intro.part2.desc">Décrivez une activité existante : l'IA génère instantanément ses 4 déclinaisons SAMR, outillées et prêtes à l'emploi.</span>
         </div>
       </div>
     </div>
   </div>
 
   <nav class="tabs">
-    <button class="tab-btn active" data-tab="explorer">Explorer le modèle</button>
-    <button class="tab-btn" data-tab="transformer">Transformer une activité</button>
+    <button class="tab-btn active" data-tab="explorer" data-i18n="tab.explore">Explorer le modèle</button>
+    <button class="tab-btn" data-tab="transformer" data-i18n="tab.transform">Transformer une activité</button>
   </nav>
 
   <!-- ══════════ PARTIE 1 ══════════ -->
@@ -969,7 +1010,7 @@ footer {
 
       <!-- Bâtiment -->
       <div class="building">
-        <div class="building-label">Niveaux SAMR</div>
+        <div class="building-label" data-i18n="building.label">Niveaux SAMR</div>
 
         <!-- Consigne -->
         <div class="explore-hint">
@@ -977,11 +1018,11 @@ footer {
             <path d="M7 1v6M7 10v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/>
           </svg>
-          Utilisez les flèches ou les boutons pour explorer les 4 niveaux
+          <span data-i18n="building.hint">Utilisez les flèches ou les boutons pour explorer les 4 niveaux</span>
         </div>
 
         <!-- Flèche monter -->
-        <button class="shaft-arrow" id="nav-up" title="Monter">
+        <button class="shaft-arrow" id="nav-up" data-i18n-title="nav.up" title="Monter">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 3L13 10H3L8 3Z" fill="currentColor"/>
           </svg>
@@ -995,39 +1036,39 @@ footer {
               <div class="shaft-rail"></div>
               <div class="shaft-badge">R</div>
               <div class="shaft-info">
-                <div class="shaft-name">Redéfinition</div>
-                <div class="shaft-sub">Tâche inédite</div>
+                <div class="shaft-name" data-i18n="level.R.name">Redéfinition</div>
+                <div class="shaft-sub" data-i18n="level.R.sub">Tâche inédite</div>
               </div>
             </div>
             <div class="shaft-floor" data-level="M">
               <div class="shaft-rail"></div>
               <div class="shaft-badge">M</div>
               <div class="shaft-info">
-                <div class="shaft-name">Modification</div>
-                <div class="shaft-sub">Tâche redessinée</div>
+                <div class="shaft-name" data-i18n="level.M.name">Modification</div>
+                <div class="shaft-sub" data-i18n="level.M.sub">Tâche redessinée</div>
               </div>
             </div>
             <div class="shaft-floor" data-level="A">
               <div class="shaft-rail"></div>
               <div class="shaft-badge">A</div>
               <div class="shaft-info">
-                <div class="shaft-name">Augmentation</div>
-                <div class="shaft-sub">Outil amélioré</div>
+                <div class="shaft-name" data-i18n="level.A.name">Augmentation</div>
+                <div class="shaft-sub" data-i18n="level.A.sub">Outil amélioré</div>
               </div>
             </div>
             <div class="shaft-floor active" data-level="S">
               <div class="shaft-rail"></div>
               <div class="shaft-badge">S</div>
               <div class="shaft-info">
-                <div class="shaft-name">Substitution</div>
-                <div class="shaft-sub">Même tâche</div>
+                <div class="shaft-name" data-i18n="level.S.name">Substitution</div>
+                <div class="shaft-sub" data-i18n="level.S.sub">Même tâche</div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Flèche descendre -->
-        <button class="shaft-arrow" id="nav-down" title="Descendre">
+        <button class="shaft-arrow" id="nav-down" data-i18n-title="nav.down" title="Descendre">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 13L3 6H13L8 13Z" fill="currentColor"/>
           </svg>
@@ -1043,7 +1084,7 @@ footer {
 
         <!-- Scale bar -->
         <div class="samr-scale">
-          <div class="scale-label">Niveau de transformation</div>
+          <div class="scale-label" data-i18n="scale.label">Niveau de transformation</div>
           <div class="scale-bar">
             <div class="scale-seg current" data-s></div>
             <div class="scale-seg" data-a></div>
@@ -1065,21 +1106,21 @@ footer {
         <!-- S -->
         <div class="floor-card active" data-level="S">
           <div class="floor-card-inner">
-            <div class="card-level-tag">Niveau 1 &middot; Substitution</div>
-            <div class="card-title">Substitution</div>
-            <div class="card-tagline">« La technologie remplace l'outil, sans rien changer d'autre »</div>
-            <div class="card-definition">
+            <div class="card-level-tag" data-i18n="card.S.tag">Niveau 1 &middot; Substitution</div>
+            <div class="card-title" data-i18n="level.S.name">Substitution</div>
+            <div class="card-tagline" data-i18n="card.S.tagline">« La technologie remplace l'outil, sans rien changer d'autre »</div>
+            <div class="card-definition" data-i18n="card.S.def">
               La technologie est utilisée comme un substitut direct d'un outil traditionnel. Il n'y a aucune amélioration fonctionnelle : l'activité reste identique, seul le support change.
             </div>
-            <div class="card-question">Exemples concrets</div>
+            <div class="card-question" data-i18n="card.examples">Exemples concrets</div>
             <div class="examples-grid">
-              <div class="example-item"><span class="example-icon">📝</span><span>Les élèves tapent un texte au traitement de texte <em>au lieu de</em> l'écrire à la main</span></div>
-              <div class="example-item"><span class="example-icon">📖</span><span>Lire un PDF au lieu d'un manuel papier</span></div>
-              <div class="example-item"><span class="example-icon">🧮</span><span>Remplir un formulaire Word au lieu d'une fiche papier</span></div>
+              <div class="example-item"><span class="example-icon">📝</span><span data-i18n="card.S.ex1">Les élèves tapent un texte au traitement de texte <em>au lieu de</em> l'écrire à la main</span></div>
+              <div class="example-item"><span class="example-icon">📖</span><span data-i18n="card.S.ex2">Lire un PDF au lieu d'un manuel papier</span></div>
+              <div class="example-item"><span class="example-icon">🧮</span><span data-i18n="card.S.ex3">Remplir un formulaire Word au lieu d'une fiche papier</span></div>
             </div>
             <div class="card-tech-note">
               <span>💡</span>
-              <span>La substitution n'est pas mauvaise : elle facilite la logistique (partage, stockage) mais ne transforme pas l'apprentissage.</span>
+              <span data-i18n="card.S.note">La substitution n'est pas mauvaise : elle facilite la logistique (partage, stockage) mais ne transforme pas l'apprentissage.</span>
             </div>
           </div>
         </div>
@@ -1087,21 +1128,21 @@ footer {
         <!-- A -->
         <div class="floor-card" data-level="A">
           <div class="floor-card-inner">
-            <div class="card-level-tag">Niveau 2 &middot; Augmentation</div>
-            <div class="card-title">Augmentation</div>
-            <div class="card-tagline">« La même tâche, mais avec des fonctionnalités supplémentaires »</div>
-            <div class="card-definition">
+            <div class="card-level-tag" data-i18n="card.A.tag">Niveau 2 &middot; Augmentation</div>
+            <div class="card-title" data-i18n="level.A.name">Augmentation</div>
+            <div class="card-tagline" data-i18n="card.A.tagline">« La même tâche, mais avec des fonctionnalités supplémentaires »</div>
+            <div class="card-definition" data-i18n-html="card.A.def">
               La technologie remplace l'outil traditionnel <strong>et apporte des fonctions nouvelles</strong> qui améliorent l'exécution de la tâche. L'activité reste fondamentalement la même, mais elle devient plus efficace ou plus riche.
             </div>
-            <div class="card-question">Exemples concrets</div>
+            <div class="card-question" data-i18n="card.examples">Exemples concrets</div>
             <div class="examples-grid">
-              <div class="example-item"><span class="example-icon">✏️</span><span>Traitement de texte avec correcteur orthographique, dictionnaire intégré, historique des versions</span></div>
-              <div class="example-item"><span class="example-icon">🔍</span><span>Recherche documentaire avec moteur de recherche (vs encyclopédie papier)</span></div>
-              <div class="example-item"><span class="example-icon">📊</span><span>Tableau Excel avec calculs automatiques au lieu d'une grille papier</span></div>
+              <div class="example-item"><span class="example-icon">✏️</span><span data-i18n="card.A.ex1">Traitement de texte avec correcteur orthographique, dictionnaire intégré, historique des versions</span></div>
+              <div class="example-item"><span class="example-icon">🔍</span><span data-i18n="card.A.ex2">Recherche documentaire avec moteur de recherche (vs encyclopédie papier)</span></div>
+              <div class="example-item"><span class="example-icon">📊</span><span data-i18n="card.A.ex3">Tableau Excel avec calculs automatiques au lieu d'une grille papier</span></div>
             </div>
             <div class="card-tech-note">
               <span>💡</span>
-              <span>On est encore dans <strong>l'amélioration</strong> (enhancement). La structure de l'activité n'est pas remise en question.</span>
+              <span data-i18n-html="card.A.note">On est encore dans <strong>l'amélioration</strong> (enhancement). La structure de l'activité n'est pas remise en question.</span>
             </div>
           </div>
         </div>
@@ -1109,21 +1150,21 @@ footer {
         <!-- M -->
         <div class="floor-card" data-level="M">
           <div class="floor-card-inner">
-            <div class="card-level-tag">Niveau 3 &middot; Modification</div>
-            <div class="card-title">Modification</div>
-            <div class="card-tagline">« La technologie redessine la tâche en profondeur »</div>
-            <div class="card-definition">
+            <div class="card-level-tag" data-i18n="card.M.tag">Niveau 3 &middot; Modification</div>
+            <div class="card-title" data-i18n="level.M.name">Modification</div>
+            <div class="card-tagline" data-i18n="card.M.tagline">« La technologie redessine la tâche en profondeur »</div>
+            <div class="card-definition" data-i18n-html="card.M.def">
               La technologie permet de <strong>repenser significativement</strong> la tâche. Ce n'est plus seulement un outil plus efficace : c'est une nouvelle façon de travailler qui change la nature même de l'activité et des interactions possibles.
             </div>
-            <div class="card-question">Exemples concrets</div>
+            <div class="card-question" data-i18n="card.examples">Exemples concrets</div>
             <div class="examples-grid">
-              <div class="example-item"><span class="example-icon">🤝</span><span>Rédiger un texte en collaboration en temps réel sur Google Docs, avec commentaires et suggestions</span></div>
-              <div class="example-item"><span class="example-icon">🎬</span><span>Créer une vidéo explicative au lieu de rendre un texte : multimodalité, montage, narration</span></div>
-              <div class="example-item"><span class="example-icon">🗺️</span><span>Construire une carte mentale collaborative avec liens vers des sources externes</span></div>
+              <div class="example-item"><span class="example-icon">🤝</span><span data-i18n="card.M.ex1">Rédiger un texte en collaboration en temps réel sur Google Docs, avec commentaires et suggestions</span></div>
+              <div class="example-item"><span class="example-icon">🎬</span><span data-i18n="card.M.ex2">Créer une vidéo explicative au lieu de rendre un texte : multimodalité, montage, narration</span></div>
+              <div class="example-item"><span class="example-icon">🗺️</span><span data-i18n="card.M.ex3">Construire une carte mentale collaborative avec liens vers des sources externes</span></div>
             </div>
             <div class="card-tech-note">
               <span>💡</span>
-              <span>On entre dans la <strong>transformation</strong>. La tâche sans technologie serait fondamentalement différente, moins riche ou simplement impossible à cette échelle.</span>
+              <span data-i18n-html="card.M.note">On entre dans la <strong>transformation</strong>. La tâche sans technologie serait fondamentalement différente, moins riche ou simplement impossible à cette échelle.</span>
             </div>
           </div>
         </div>
@@ -1131,21 +1172,21 @@ footer {
         <!-- R -->
         <div class="floor-card" data-level="R">
           <div class="floor-card-inner">
-            <div class="card-level-tag">Niveau 4 &middot; Redéfinition</div>
-            <div class="card-title">Redéfinition</div>
-            <div class="card-tagline">« Une tâche qui n'aurait pas pu exister sans la technologie »</div>
-            <div class="card-definition">
+            <div class="card-level-tag" data-i18n="card.R.tag">Niveau 4 &middot; Redéfinition</div>
+            <div class="card-title" data-i18n="level.R.name">Redéfinition</div>
+            <div class="card-tagline" data-i18n="card.R.tagline">« Une tâche qui n'aurait pas pu exister sans la technologie »</div>
+            <div class="card-definition" data-i18n-html="card.R.def">
               La technologie permet de créer des tâches <strong>totalement nouvelles, impensables autrement</strong>. L'apprentissage dépasse le cadre de la classe, connecte des apprenants du monde entier, ou produit des artefacts à destination d'un public réel.
             </div>
-            <div class="card-question">Exemples concrets</div>
+            <div class="card-question" data-i18n="card.examples">Exemples concrets</div>
             <div class="examples-grid">
-              <div class="example-item"><span class="example-icon">🌍</span><span>Projet collaboratif avec une classe en Finlande via visioconférence et espace partagé</span></div>
-              <div class="example-item"><span class="example-icon">🎙️</span><span>Créer un podcast publié en ligne sur un sujet citoyen, avec une vraie audience</span></div>
-              <div class="example-item"><span class="example-icon">🧬</span><span>Simuler des expériences scientifiques impossibles en classe (dissection virtuelle 3D, simulation climatique)</span></div>
+              <div class="example-item"><span class="example-icon">🌍</span><span data-i18n="card.R.ex1">Projet collaboratif avec une classe en Finlande via visioconférence et espace partagé</span></div>
+              <div class="example-item"><span class="example-icon">🎙️</span><span data-i18n="card.R.ex2">Créer un podcast publié en ligne sur un sujet citoyen, avec une vraie audience</span></div>
+              <div class="example-item"><span class="example-icon">🧬</span><span data-i18n="card.R.ex3">Simuler des expériences scientifiques impossibles en classe (dissection virtuelle 3D, simulation climatique)</span></div>
             </div>
             <div class="card-tech-note">
               <span>💡</span>
-              <span>La Redéfinition n'est pas toujours supérieure : elle doit servir un <strong>objectif pédagogique précis</strong>. Tout n'a pas besoin d'atteindre ce niveau.</span>
+              <span data-i18n-html="card.R.note">La Redéfinition n'est pas toujours supérieure : elle doit servir un <strong>objectif pédagogique précis</strong>. Tout n'a pas besoin d'atteindre ce niveau.</span>
             </div>
           </div>
         </div>
@@ -1159,24 +1200,36 @@ footer {
     <div class="transformer-section">
 
       <div class="transformer-intro">
-        <p>Décrivez une activité pédagogique classique. L'IA génère ses 4 versions SAMR — de la simple substitution à la redéfinition complète.</p>
+        <p data-i18n="transformer.intro">Décrivez une activité pédagogique classique. L'IA génère ses 4 versions SAMR — de la simple substitution à la redéfinition complète.</p>
       </div>
 
       <div class="input-zone">
-        <label>Votre activité de départ</label>
-        <textarea id="activity-input" placeholder="Ex : Les élèves lisent un texte et répondent à des questions de compréhension par écrit…"></textarea>
+        <label data-i18n="input.label">Votre activité de départ</label>
+        <textarea id="activity-input" data-i18n-placeholder="input.placeholder" placeholder="Ex : Les élèves lisent un texte et répondent à des questions de compréhension par écrit…"></textarea>
         <div class="examples-chips">
-          <span>Essayez :</span>
-          <button class="chip" data-ex="Les élèves prennent des notes pendant le cours magistral">Notes de cours</button>
-          <button class="chip" data-ex="Les élèves font des exercices de mathématiques sur feuille">Exercices de maths</button>
-          <button class="chip" data-ex="Les élèves rédigent un exposé sur un pays à partir d'une encyclopédie">Exposé géographie</button>
-          <button class="chip" data-ex="Les élèves débattent oralement d'un sujet d'actualité en classe">Débat oral</button>
+          <span data-i18n="chips.try">Essayez :</span>
+          <button class="chip"
+            data-ex-fr="Les élèves prennent des notes pendant le cours magistral"
+            data-ex-en="Students take notes during a lecture"
+            data-i18n="chip.notes">Notes de cours</button>
+          <button class="chip"
+            data-ex-fr="Les élèves font des exercices de mathématiques sur feuille"
+            data-ex-en="Students do maths exercises on paper"
+            data-i18n="chip.maths">Exercices de maths</button>
+          <button class="chip"
+            data-ex-fr="Les élèves rédigent un exposé sur un pays à partir d'une encyclopédie"
+            data-ex-en="Students write a presentation about a country using an encyclopaedia"
+            data-i18n="chip.geo">Exposé géographie</button>
+          <button class="chip"
+            data-ex-fr="Les élèves débattent oralement d'un sujet d'actualité en classe"
+            data-ex-en="Students debate a current affairs topic orally in class"
+            data-i18n="chip.debate">Débat oral</button>
         </div>
       </div>
 
       <button class="generate-btn" id="generate-btn">
         <span class="btn-label">
-          <span id="btn-text">Transformer en 4 niveaux SAMR</span>
+          <span id="btn-text" data-i18n="btn.generate">Transformer en 4 niveaux SAMR</span>
         </span>
         <span class="btn-icon">🚀</span>
       </button>
@@ -1188,52 +1241,257 @@ footer {
           <div class="result-floor-header">
             <div class="result-badge">S</div>
             <div class="result-level-name">
-              <strong>Substitution</strong>
-              <span>Même tâche, outil différent</span>
+              <strong data-i18n="level.S.name">Substitution</strong>
+              <span data-i18n="result.S.sub">Même tâche, outil différent</span>
             </div>
           </div>
-          <div class="result-body" id="body-S"><span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">En attente de génération…</span></div>
+          <div class="result-body" id="body-S"><span class="waiting-text" style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic" data-i18n="result.waiting">En attente de génération…</span></div>
         </div>
         <div class="result-floor" data-level="A" id="floor-A">
           <div class="result-floor-header">
             <div class="result-badge">A</div>
             <div class="result-level-name">
-              <strong>Augmentation</strong>
-              <span>Fonctionnalités supplémentaires</span>
+              <strong data-i18n="level.A.name">Augmentation</strong>
+              <span data-i18n="result.A.sub">Fonctionnalités supplémentaires</span>
             </div>
           </div>
-          <div class="result-body" id="body-A"><span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">En attente de génération…</span></div>
+          <div class="result-body" id="body-A"><span class="waiting-text" style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic" data-i18n="result.waiting">En attente de génération…</span></div>
         </div>
         <div class="result-floor" data-level="M" id="floor-M">
           <div class="result-floor-header">
             <div class="result-badge">M</div>
             <div class="result-level-name">
-              <strong>Modification</strong>
-              <span>Tâche redessinée</span>
+              <strong data-i18n="level.M.name">Modification</strong>
+              <span data-i18n="result.M.sub">Tâche redessinée</span>
             </div>
           </div>
-          <div class="result-body" id="body-M"><span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">En attente de génération…</span></div>
+          <div class="result-body" id="body-M"><span class="waiting-text" style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic" data-i18n="result.waiting">En attente de génération…</span></div>
         </div>
         <div class="result-floor" data-level="R" id="floor-R">
           <div class="result-floor-header">
             <div class="result-badge">R</div>
             <div class="result-level-name">
-              <strong>Redéfinition</strong>
-              <span>Tâche inédite, impossible sans tech</span>
+              <strong data-i18n="level.R.name">Redéfinition</strong>
+              <span data-i18n="result.R.sub">Tâche inédite, impossible sans tech</span>
             </div>
           </div>
-          <div class="result-body" id="body-R"><span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">En attente de génération…</span></div>
+          <div class="result-body" id="body-R"><span class="waiting-text" style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic" data-i18n="result.waiting">En attente de génération…</span></div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <footer>SAMR &middot; Ruben Puentedura, 2006 &middot; Outil pédagogique interactif</footer>
+  <footer data-i18n="footer">SAMR &middot; Ruben Puentedura, 2006 &middot; Outil pédagogique interactif</footer>
 
 </div><!-- /page-frame -->
 
 <script>
+// ───── TRADUCTIONS ─────
+const T = {
+  fr: {
+    'header.subtitle':   'Le modèle de Ruben Puentedura \u00b7 Intégration des technologies en éducation',
+    'nav.separator':     '❧ Navigation ❧',
+    'intro.lead':        'Le modèle <strong>SAMR</strong>, développé par Ruben Puentedura, offre un cadre pour penser l\'intégration du numérique dans l\'enseignement — non pas comme une simple modernisation des outils, mais comme une opportunité de <strong>transformer en profondeur les apprentissages</strong>.',
+    'intro.body':        'Il distingue quatre niveaux, de la substitution (même tâche, outil différent) jusqu\'à la redéfinition (tâches inédites, impossibles sans le numérique). Plus on monte, plus la technologie devient un levier réel de changement pédagogique.',
+    'intro.part1.title': 'Explorer le modèle',
+    'intro.part1.desc':  'Naviguez entre les 4 niveaux SAMR pour comprendre leurs définitions, exemples et enjeux pédagogiques.',
+    'intro.part2.title': 'Transformer une activité',
+    'intro.part2.desc':  'Décrivez une activité existante : l\'IA génère instantanément ses 4 déclinaisons SAMR, outillées et prêtes à l\'emploi.',
+    'tab.explore':       'Explorer le modèle',
+    'tab.transform':     'Transformer une activité',
+    'building.label':    'Niveaux SAMR',
+    'building.hint':     'Utilisez les flèches ou les boutons pour explorer les 4 niveaux',
+    'nav.up':            'Monter',
+    'nav.down':          'Descendre',
+    'level.S.name':      'Substitution',
+    'level.S.sub':       'Même tâche',
+    'level.A.name':      'Augmentation',
+    'level.A.sub':       'Outil amélioré',
+    'level.M.name':      'Modification',
+    'level.M.sub':       'Tâche redessinée',
+    'level.R.name':      'Redéfinition',
+    'level.R.sub':       'Tâche inédite',
+    'scale.label':       'Niveau de transformation',
+    'card.examples':     'Exemples concrets',
+    'card.S.tag':        'Niveau 1 \u00b7 Substitution',
+    'card.S.tagline':    '« La technologie remplace l\'outil, sans rien changer d\'autre »',
+    'card.S.def':        'La technologie est utilisée comme un substitut direct d\'un outil traditionnel. Il n\'y a aucune amélioration fonctionnelle : l\'activité reste identique, seul le support change.',
+    'card.S.ex1':        'Les élèves tapent un texte au traitement de texte au lieu de l\'écrire à la main',
+    'card.S.ex2':        'Lire un PDF au lieu d\'un manuel papier',
+    'card.S.ex3':        'Remplir un formulaire Word au lieu d\'une fiche papier',
+    'card.S.note':       'La substitution n\'est pas mauvaise : elle facilite la logistique (partage, stockage) mais ne transforme pas l\'apprentissage.',
+    'card.A.tag':        'Niveau 2 \u00b7 Augmentation',
+    'card.A.tagline':    '« La même tâche, mais avec des fonctionnalités supplémentaires »',
+    'card.A.def':        'La technologie remplace l\'outil traditionnel <strong>et apporte des fonctions nouvelles</strong> qui améliorent l\'exécution de la tâche. L\'activité reste fondamentalement la même, mais elle devient plus efficace ou plus riche.',
+    'card.A.ex1':        'Traitement de texte avec correcteur orthographique, dictionnaire intégré, historique des versions',
+    'card.A.ex2':        'Recherche documentaire avec moteur de recherche (vs encyclopédie papier)',
+    'card.A.ex3':        'Tableau Excel avec calculs automatiques au lieu d\'une grille papier',
+    'card.A.note':       'On est encore dans <strong>l\'amélioration</strong> (enhancement). La structure de l\'activité n\'est pas remise en question.',
+    'card.M.tag':        'Niveau 3 \u00b7 Modification',
+    'card.M.tagline':    '« La technologie redessine la tâche en profondeur »',
+    'card.M.def':        'La technologie permet de <strong>repenser significativement</strong> la tâche. Ce n\'est plus seulement un outil plus efficace : c\'est une nouvelle façon de travailler qui change la nature même de l\'activité et des interactions possibles.',
+    'card.M.ex1':        'Rédiger un texte en collaboration en temps réel sur Google Docs, avec commentaires et suggestions',
+    'card.M.ex2':        'Créer une vidéo explicative au lieu de rendre un texte : multimodalité, montage, narration',
+    'card.M.ex3':        'Construire une carte mentale collaborative avec liens vers des sources externes',
+    'card.M.note':       'On entre dans la <strong>transformation</strong>. La tâche sans technologie serait fondamentalement différente, moins riche ou simplement impossible à cette échelle.',
+    'card.R.tag':        'Niveau 4 \u00b7 Redéfinition',
+    'card.R.tagline':    '« Une tâche qui n\'aurait pas pu exister sans la technologie »',
+    'card.R.def':        'La technologie permet de créer des tâches <strong>totalement nouvelles, impensables autrement</strong>. L\'apprentissage dépasse le cadre de la classe, connecte des apprenants du monde entier, ou produit des artefacts à destination d\'un public réel.',
+    'card.R.ex1':        'Projet collaboratif avec une classe en Finlande via visioconférence et espace partagé',
+    'card.R.ex2':        'Créer un podcast publié en ligne sur un sujet citoyen, avec une vraie audience',
+    'card.R.ex3':        'Simuler des expériences scientifiques impossibles en classe (dissection virtuelle 3D, simulation climatique)',
+    'card.R.note':       'La Redéfinition n\'est pas toujours supérieure : elle doit servir un <strong>objectif pédagogique précis</strong>. Tout n\'a pas besoin d\'atteindre ce niveau.',
+    'transformer.intro': 'Décrivez une activité pédagogique classique. L\'IA génère ses 4 versions SAMR — de la simple substitution à la redéfinition complète.',
+    'input.label':       'Votre activité de départ',
+    'input.placeholder': 'Ex : Les élèves lisent un texte et répondent à des questions de compréhension par écrit…',
+    'chips.try':         'Essayez :',
+    'chip.notes':        'Notes de cours',
+    'chip.maths':        'Exercices de maths',
+    'chip.geo':          'Exposé géographie',
+    'chip.debate':       'Débat oral',
+    'btn.generate':      'Transformer en 4 niveaux SAMR',
+    'btn.generating':    'Génération en cours…',
+    'result.waiting':    'En attente de génération…',
+    'result.error':      'Erreur de génération',
+    'result.S.sub':      'Même tâche, outil différent',
+    'result.A.sub':      'Fonctionnalités supplémentaires',
+    'result.M.sub':      'Tâche redessinée',
+    'result.R.sub':      'Tâche inédite, impossible sans tech',
+    'error.msg':         'Erreur lors de la génération. Vérifie ta connexion ou réessaie.',
+    'footer':            'SAMR \u00b7 Ruben Puentedura, 2006 \u00b7 Outil pédagogique interactif',
+  },
+  en: {
+    'header.subtitle':   'Ruben Puentedura\'s model \u00b7 Technology integration in education',
+    'nav.separator':     '❧ Navigation ❧',
+    'intro.lead':        'The <strong>SAMR</strong> model, developed by Ruben Puentedura, provides a framework for thinking about digital integration in teaching — not as a simple modernisation of tools, but as an opportunity to <strong>deeply transform learning</strong>.',
+    'intro.body':        'It distinguishes four levels, from substitution (same task, different tool) to redefinition (new tasks, impossible without technology). The higher you go, the more technology becomes a real lever for pedagogical change.',
+    'intro.part1.title': 'Explore the model',
+    'intro.part1.desc':  'Navigate through the 4 SAMR levels to understand their definitions, examples and pedagogical implications.',
+    'intro.part2.title': 'Transform an activity',
+    'intro.part2.desc':  'Describe an existing activity: the AI instantly generates its 4 SAMR versions, fully tooled and ready to use.',
+    'tab.explore':       'Explore the model',
+    'tab.transform':     'Transform an activity',
+    'building.label':    'SAMR Levels',
+    'building.hint':     'Use the arrows or buttons to explore the 4 levels',
+    'nav.up':            'Go up',
+    'nav.down':          'Go down',
+    'level.S.name':      'Substitution',
+    'level.S.sub':       'Same task',
+    'level.A.name':      'Augmentation',
+    'level.A.sub':       'Enhanced tool',
+    'level.M.name':      'Modification',
+    'level.M.sub':       'Redesigned task',
+    'level.R.name':      'Redefinition',
+    'level.R.sub':       'New task',
+    'scale.label':       'Transformation level',
+    'card.examples':     'Concrete examples',
+    'card.S.tag':        'Level 1 \u00b7 Substitution',
+    'card.S.tagline':    '« Technology replaces the tool, without changing anything else »',
+    'card.S.def':        'Technology is used as a direct substitute for a traditional tool. There is no functional improvement: the activity remains identical, only the medium changes.',
+    'card.S.ex1':        'Students type a text in a word processor instead of writing it by hand',
+    'card.S.ex2':        'Reading a PDF instead of a paper textbook',
+    'card.S.ex3':        'Filling in a Word form instead of a paper sheet',
+    'card.S.note':       'Substitution is not bad: it facilitates logistics (sharing, storage) but does not transform learning.',
+    'card.A.tag':        'Level 2 \u00b7 Augmentation',
+    'card.A.tagline':    '« The same task, but with additional features »',
+    'card.A.def':        'Technology replaces the traditional tool <strong>and brings new functions</strong> that improve task execution. The activity remains fundamentally the same, but becomes more efficient or richer.',
+    'card.A.ex1':        'Word processing with spell checker, built-in dictionary, version history',
+    'card.A.ex2':        'Documentary research with a search engine (vs paper encyclopaedia)',
+    'card.A.ex3':        'Excel spreadsheet with automatic calculations instead of a paper grid',
+    'card.A.note':       'We are still in <strong>enhancement</strong>. The structure of the activity is not questioned.',
+    'card.M.tag':        'Level 3 \u00b7 Modification',
+    'card.M.tagline':    '« Technology deeply redesigns the task »',
+    'card.M.def':        'Technology allows <strong>significant rethinking</strong> of the task. It is no longer just a more efficient tool: it is a new way of working that changes the very nature of the activity and the possible interactions.',
+    'card.M.ex1':        'Co-write a text in real time on Google Docs, with comments and suggestions',
+    'card.M.ex2':        'Create an explanatory video instead of handing in a text: multimodality, editing, narration',
+    'card.M.ex3':        'Build a collaborative mind map with links to external sources',
+    'card.M.note':       'We enter <strong>transformation</strong>. The task without technology would be fundamentally different, less rich or simply impossible at this scale.',
+    'card.R.tag':        'Level 4 \u00b7 Redefinition',
+    'card.R.tagline':    '« A task that could not have existed without technology »',
+    'card.R.def':        'Technology enables the creation of tasks <strong>entirely new, unthinkable otherwise</strong>. Learning goes beyond the classroom, connects learners worldwide, or produces artefacts for a real audience.',
+    'card.R.ex1':        'Collaborative project with a class in Finland via video conference and shared workspace',
+    'card.R.ex2':        'Create a podcast published online on a civic topic, with a real audience',
+    'card.R.ex3':        'Simulate scientific experiments impossible in class (virtual 3D dissection, climate simulation)',
+    'card.R.note':       'Redefinition is not always superior: it must serve a <strong>specific pedagogical goal</strong>. Not everything needs to reach this level.',
+    'transformer.intro': 'Describe a classic pedagogical activity. The AI generates its 4 SAMR versions — from simple substitution to complete redefinition.',
+    'input.label':       'Your starting activity',
+    'input.placeholder': 'E.g.: Students read a text and answer comprehension questions in writing…',
+    'chips.try':         'Try:',
+    'chip.notes':        'Lecture notes',
+    'chip.maths':        'Maths exercises',
+    'chip.geo':          'Geography essay',
+    'chip.debate':       'Oral debate',
+    'btn.generate':      'Transform into 4 SAMR levels',
+    'btn.generating':    'Generating…',
+    'result.waiting':    'Waiting for generation…',
+    'result.error':      'Generation error',
+    'result.S.sub':      'Same task, different tool',
+    'result.A.sub':      'Additional features',
+    'result.M.sub':      'Redesigned task',
+    'result.R.sub':      'New task, impossible without tech',
+    'error.msg':         'Error during generation. Check your connection or try again.',
+    'footer':            'SAMR \u00b7 Ruben Puentedura, 2006 \u00b7 Interactive pedagogical tool',
+  }
+};
+
+let currentLang = 'fr';
+
+function t(key) {
+  return T[currentLang][key] || T['fr'][key] || key;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  // Texte simple
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
+
+  // innerHTML (éléments avec balises HTML)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t(el.dataset.i18nHtml);
+  });
+
+  // Placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.placeholder = t(el.dataset.i18nPlaceholder);
+  });
+
+  // Title (boutons)
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.title = t(el.dataset.i18nTitle);
+  });
+
+  // Chips : label + data-ex selon la langue
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.dataset.ex = lang === 'en' ? chip.dataset.exEn : chip.dataset.exFr;
+  });
+
+  // Boutons de langue
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Remettre à jour les résultats en attente (waiting-text non modifiés)
+  document.querySelectorAll('.result-body .waiting-text').forEach(el => {
+    el.textContent = t('result.waiting');
+  });
+
+  // Bouton génération (si pas en cours)
+  const btnEl = document.getElementById('generate-btn');
+  if (!btnEl.disabled) {
+    document.getElementById('btn-text').textContent = t('btn.generate');
+  }
+}
+
+// ───── SÉLECTEUR DE LANGUE ─────
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
 // ───── TABS ─────
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1245,43 +1503,36 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 // ───── ELEVATOR (Partie 1) ─────
-// Ordre du puits : R en haut, S en bas (index 0=R, 1=M, 2=A, 3=S)
 const shaftOrder = ['R', 'M', 'A', 'S'];
 const floors = ['S', 'A', 'M', 'R'];
-const FLOOR_H = 88; // hauteur d'un étage en px
+const FLOOR_H = 88;
 let currentFloor = 'S';
 
 function activateFloor(level) {
   currentFloor = level;
   const shaftIdx = shaftOrder.indexOf(level);
 
-  // Slide du puits : translateY(-index * FLOOR_H)
   document.getElementById('shaft-track').style.transform =
     `translateY(-${shaftIdx * FLOOR_H}px)`;
 
-  // Active les shaft-floors et floor-dots
   document.querySelectorAll('.shaft-floor').forEach(f =>
     f.classList.toggle('active', f.dataset.level === level));
   document.querySelectorAll('.floor-dot').forEach(d =>
     d.classList.toggle('active', d.dataset.level === level));
 
-  // Cartes de droite
   document.querySelectorAll('.floor-card').forEach(c => c.classList.remove('active'));
   document.querySelector(`.floor-card[data-level="${level}"]`).classList.add('active');
 
-  // Scale bar
   const scaleIdx = floors.indexOf(level);
   document.querySelectorAll('.scale-seg').forEach((s, i) =>
     s.classList.toggle('current', i === scaleIdx));
   document.querySelectorAll('.scale-labels-row span').forEach((s, i) =>
     s.classList.toggle('current-label', i === scaleIdx));
 
-  // Flèches : désactiver si extrémités
   document.getElementById('nav-up').disabled   = (shaftIdx === 0);
   document.getElementById('nav-down').disabled = (shaftIdx === shaftOrder.length - 1);
 }
 
-// Flèches
 document.getElementById('nav-up').addEventListener('click', () => {
   const idx = shaftOrder.indexOf(currentFloor);
   if (idx > 0) activateFloor(shaftOrder[idx - 1]);
@@ -1291,15 +1542,11 @@ document.getElementById('nav-down').addEventListener('click', () => {
   if (idx < shaftOrder.length - 1) activateFloor(shaftOrder[idx + 1]);
 });
 
-// Clic direct sur un étage du puits
 document.querySelectorAll('.shaft-floor').forEach(f =>
   f.addEventListener('click', () => activateFloor(f.dataset.level)));
-
-// Clic sur les dots
 document.querySelectorAll('.floor-dot').forEach(d =>
   d.addEventListener('click', () => activateFloor(d.dataset.level)));
 
-// Init
 activateFloor('S');
 
 // ───── TRANSFORMER (Partie 2) ─────
@@ -1320,7 +1567,7 @@ async function generateSAMR() {
   const errorEl = document.getElementById('error-msg');
   errorEl.style.display = 'none';
   btn.disabled = true;
-  document.getElementById('btn-text').textContent = 'Génération en cours…';
+  document.getElementById('btn-text').textContent = t('btn.generating');
 
   floors.forEach(lvl => {
     const floor = document.getElementById('floor-' + lvl);
@@ -1330,32 +1577,16 @@ async function generateSAMR() {
     body.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
   });
 
-  const prompt = `Tu es un expert en pédagogie numérique et en modèle SAMR (Puentedura).
-
-Activité de départ : "${activity}"
-
-Génère les 4 versions SAMR de cette activité. Réponds UNIQUEMENT en JSON valide, sans texte avant ou après, sans backticks. Format exact :
-{
-  "S": "Description concrète de la version Substitution (2-3 phrases, avec outil spécifique nommé)",
-  "A": "Description concrète de la version Augmentation (2-3 phrases, avec fonctionnalités spécifiques)",
-  "M": "Description concrète de la version Modification (2-3 phrases, avec outil et changement de la tâche)",
-  "R": "Description concrète de la version Redéfinition (2-3 phrases, tâche inédite impossible sans tech)"
-}
-
-Sois concret, pratique, adapté à l'enseignement secondaire ou professionnel.
-Privilégie ces outils quand c'est pertinent (tu peux aussi en utiliser d'autres) : Microsoft 365 (Word, Teams, Forms, OneNote, PowerPoint…), Canva, Wooclap, Wooflash, BookWidgets.
-Glisse une touche légère et subtile d'enthousiasme pédagogique dans le ton — sans excès, juste assez pour que ça donne envie d'essayer.`;
-
   try {
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activity }),
+      body: JSON.stringify({ activity, lang: currentLang }),
     });
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.error || `Erreur ${response.status}`);
+      throw new Error(err.error || `Error ${response.status}`);
     }
 
     const result = await response.json();
@@ -1373,22 +1604,24 @@ Glisse une touche légère et subtile d'enthousiasme pédagogique dans le ton �
     floors.forEach(lvl => {
       document.getElementById('floor-' + lvl).classList.remove('loading');
       document.getElementById('body-' + lvl).innerHTML =
-        '<span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">Erreur de génération</span>';
+        `<span style="color:rgba(13,22,23,.45);font-size:.88rem;font-style:italic">${t('result.error')}</span>`;
     });
-    errorEl.textContent = "Erreur lors de la génération. Vérifie ta connexion ou réessaie.";
+    errorEl.textContent = t('error.msg');
     errorEl.style.display = 'block';
     console.error(err);
   }
 
   btn.disabled = false;
-  document.getElementById('btn-text').textContent = 'Transformer en 4 niveaux SAMR';
+  document.getElementById('btn-text').textContent = t('btn.generate');
 }
-
 
 document.getElementById('generate-btn').addEventListener('click', generateSAMR);
 document.getElementById('activity-input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) generateSAMR();
 });
+
+// Init : appliquer la langue par défaut pour synchroniser les chips data-ex
+setLang('fr');
 </script>
 </body>
 </html>
